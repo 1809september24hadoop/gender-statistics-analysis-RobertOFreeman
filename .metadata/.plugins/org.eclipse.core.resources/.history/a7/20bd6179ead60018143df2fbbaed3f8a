@@ -1,0 +1,8 @@
+package com.revature.percentfememp;
+
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class PercentFemEmp extends Mapper<LongWritable, Text, Text, Text> {
+
+}

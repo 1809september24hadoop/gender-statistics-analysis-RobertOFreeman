@@ -1,4 +1,4 @@
-package com.revature.BountyHunt;
+package com.revature.bountyhunt;
 
 public class SubMain4 {
 

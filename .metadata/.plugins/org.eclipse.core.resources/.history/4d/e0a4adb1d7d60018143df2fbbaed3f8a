@@ -1,0 +1,8 @@
+package com.revature.femalegrad;
+
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class FemGradMapper extends Mapper<LongWritable, Text, Text, Text>{
+
+}
