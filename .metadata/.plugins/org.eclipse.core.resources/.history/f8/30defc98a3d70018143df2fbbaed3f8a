@@ -1,0 +1,28 @@
+package com.revature;
+
+import org.apache.hadoop.mapreduce.Job;
+
+public class Main {
+	public static void main(String[] args) throws Exception{
+		if (args.length != 3){
+			System.out.printf("Usage: Main <input dir> <output dir> <problem number>\n");
+			System.exit(-1);
+		}
+		Job job = new Job();
+		job.setJarByClass(Statistics.class)
+
+		switch(Integer.parseInt(args[2])){
+		case 0 :
+;
+		case 1 :
+
+		case 2 :
+
+		case 3 :
+
+		case 4 :
+
+
+		}
+	}
+}

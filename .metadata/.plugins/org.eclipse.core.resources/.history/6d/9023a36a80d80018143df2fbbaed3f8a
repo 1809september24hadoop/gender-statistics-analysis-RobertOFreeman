@@ -1,0 +1,30 @@
+package com.revature.femalegrad;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemGradReducer extends Reducer<Text, Text, Text, Text> {
+
+	public void reduce(Text key, Text values, Context context)
+			throws IOException, InterruptedException {
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		for(Integer i = 0; i < entries.length-1; i++){
+			if (entries[entries.length-i] != "" ||entries[entries.length-i] != null ){
+				Integer percent = Integer.parseInt(entries[entries.length-i]);
+				if(percent < 30){
+					if (entries[3].contains("primary")){
+						context.write(new Text(key+":Highschool"+":"), new Text(entries[entries.length-i]));
+						break;
+					}
+					else if (entries[3].contains("tertiary")){
+						context.write(new Text(key+","+"College"+","), new Text(entries[entries.length-i]));
+						break;
+					}
+				}
+			}
+		}
+	}
+}

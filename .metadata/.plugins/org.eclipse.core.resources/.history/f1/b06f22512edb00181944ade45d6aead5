@@ -1,0 +1,69 @@
+package com.revature.bountyhunt;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Reducer.Context;
+
+public class BountyHuntReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+	Double femaleval = 0.0;
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		String country = entries[0];
+		country = country.substring(1,country.length()-1);
+		for(Integer iter = 1; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				if(entries[3].contains("female")){
+					femaleval = Double.parseDouble(value);
+				}
+				else if (entries[3].contains("male")){
+					Double maleval = Double.parseDouble(value);
+					else{
+						if(femaleval > maleval){
+							if (femaleval- maleval < 1){
+								context.write(new Text(country +","+"no bias,difference,below"), new DoubleWritable(1));								
+							}
+							else{
+								context.write(new Text(country +","+"female bias,"+String.valueOf(femaleval)+","+String.valueOf(maleval)+",diffference,"), new DoubleWritable(femaleval-maleval));
+							}
+							femaleval = 0.0;
+							maleval = 0.0;
+							break;
+						}
+						else if (maleval > femaleval){
+							if (maleval-femaleval < 1){
+								context.write(new Text(country +","+"no bias,difference,below"), new DoubleWritable(1));								
+							}
+							else{
+								context.write(new Text(country +","+"male bias,"+String.valueOf(femaleval)+","+String.valueOf(maleval)+",difference,"), new DoubleWritable(maleval-femaleval));
+							}	
+							femaleval = 0.0;
+							maleval = 0.0;
+							break;
+						}
+						else{
+							context.write(new Text(country +","+"no bias,difference,"), new DoubleWritable(0));
+							femaleval = 0.0;
+							maleval = 0.0;
+							break;
+						}
+					}
+				}
+			}
+			else{
+				continue;
+			}
+		}
+
+	}
+}

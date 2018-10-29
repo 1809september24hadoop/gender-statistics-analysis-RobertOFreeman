@@ -1,0 +1,23 @@
+package com.revature.femalegrad;
+
+import java.io.IOException;
+
+import org.apache.log4j.Logger;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class FemGradMapper extends Mapper<LongWritable, Text, Text, Text>{
+	private static final Logger LOGGER = Logger.getLogger(FemGradMapper.class);
+	@Override
+	public void map(LongWritable key, Text value, Context context)
+			throws IOException, InterruptedException{
+
+		String line = value.toString();
+		String[] lines = line.split(",");
+		LOGGER.info(lines[3]);
+		if(lines[3].contains("female")){
+		context.write(new Text(lines[0]), new Text(line));
+		}
+	}
+}

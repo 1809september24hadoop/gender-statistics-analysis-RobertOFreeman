@@ -1,0 +1,27 @@
+package com.revature;
+
+public class Main {
+	public static void main(String[] args) throws Exception{
+		if (args.length != 3){
+			System.out.printf("Usage: Main <input dir> <output dir> <problem number>\n");
+			System.exit(-1);
+		}
+		
+		switch(Integer.parseInt(args[2])){
+		case 0 :
+			
+		case 1 :
+			
+		case 2 :
+			
+		case 3 :
+			
+		case 4 :
+			
+			
+		}
+		
+		
+		
+		}
+	}

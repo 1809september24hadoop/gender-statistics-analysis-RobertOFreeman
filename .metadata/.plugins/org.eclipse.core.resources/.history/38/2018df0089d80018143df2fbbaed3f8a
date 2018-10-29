@@ -1,0 +1,32 @@
+package com.revature.bountyhunt;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class BountyHuntReducer extends Reducer<Text, Text, Text, Text> {
+	String LastCountry = "";
+	Integer FemaleValue = 0;
+	public void reduce(Text key, Text values, Context context)
+			throws IOException, InterruptedException {
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		if (LastCountry == ""){
+			LastCountry = key.toString();
+			FemaleValue = Integer.parseInt(entries[entries.length-1]);
+			return null
+		}
+		else{
+			if (entries[entries.length-1].equals(FemaleValue)){
+				context.write(key,new Text("Males and Females can constructe and open a business in equal time"));
+			}
+			else{
+				context.write(key, new Text("There is a bias in gender for opening business in this country"));
+			}
+			
+		}
+		
+	}
+
+}

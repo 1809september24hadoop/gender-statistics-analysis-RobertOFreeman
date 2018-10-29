@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="com.revature.testificate" project="Statistics" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.testificate.Testinator" time="0.846">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinator" time="0.736"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinator" time="0.071"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinator" time="0.039"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorb" time="0.081">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorb" time="0.03"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorb" time="0.023"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorb" time="0.028"/>
+  </testsuite>
+</testrun>

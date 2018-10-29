@@ -1,0 +1,19 @@
+package com.revature.femalegrad;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemGradReducer extends Reducer<Text, Text, Text, Text> {
+	
+	public void reduce(Text key, Text values, Context context)
+			throws IOException, InterruptedException {
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		if (entries[entries.length] != ""    ){
+			context.write(key+"--------", new Text(entries[entries.length]));
+		}
+	}
+}

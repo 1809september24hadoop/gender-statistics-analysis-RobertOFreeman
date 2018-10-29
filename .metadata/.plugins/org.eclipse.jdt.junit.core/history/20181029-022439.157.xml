@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="com.revature.testificate" project="Statistics" tests="12" started="12" failures="2" errors="0" ignored="0">
+  <testsuite name="com.revature.testificate.Testinator" time="0.831">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinator" time="0.722"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinator" time="0.065"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinator" time="0.044"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorc" time="0.077">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorc" time="0.026"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorc" time="0.025"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorc" time="0.026"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatord" time="0.064">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatord" time="0.02"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatord" time="0.022">
+      <failure>java.lang.AssertionError: 1 Error(s): (Missing expected output ("Afghanistan","AFG","Employment to population ratio, 15+, male (%) (modeled ILO estimate)","SL.EMP.TOTL.SP.FE.ZS","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","16.0520000457764","15.9750003814697","15.7880001068115","15.6540002822876","15.6859998703003","15.3699998855591","15.1820001602173","15.0469999313354","14.9689998626709","14.7880001068115","14.960000038147","15.3400001525879","13.7880001068115","14.0319995880127","14.289999961853","14.1940002441406","14.1420001983643","14.1619997024536","14.2810001373291","14.5129995346069","14.9200000762939","15.4130001068115","15.9630002975464","16.6259994506836","16.7220001220703","16.8190002441406",, 0) at position 0.)
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.apache.hadoop.mrunit.TestDriver.validate(TestDriver.java:294)
+	at org.apache.hadoop.mrunit.MapDriverBase.runTest(MapDriverBase.java:151)
+	at org.apache.hadoop.mrunit.TestDriver.runTest(TestDriver.java:137)
+	at com.revature.testificate.Testinatord.testMapper(Testinatord.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+
+</failure>
+    </testcase>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatord" time="0.022">
+      <failure>java.lang.AssertionError: 1 Error(s): (Missing expected output (Afghanistan,, 2.0310001373291) at position 0.)
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.apache.hadoop.mrunit.TestDriver.validate(TestDriver.java:294)
+	at org.apache.hadoop.mrunit.MapReduceDriverBase.runTest(MapReduceDriverBase.java:142)
+	at org.apache.hadoop.mrunit.TestDriver.runTest(TestDriver.java:137)
+	at com.revature.testificate.Testinatord.testMapReduce(Testinatord.java:126)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+
+</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorb" time="0.074">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorb" time="0.03"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorb" time="0.018"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorb" time="0.025"/>
+  </testsuite>
+</testrun>

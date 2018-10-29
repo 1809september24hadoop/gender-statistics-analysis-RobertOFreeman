@@ -1,0 +1,88 @@
+package com.revature.usfemeducation;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemEduReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+
+	Map<String,Double> avgprim = new HashMap<String,Double>();
+	Map<String,Double> avgtert = new HashMap<String,Double>();
+	Double globalavg = 0.0;
+	
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+		Double avg = 0.0;
+		Double globalsum = 0.0;
+		Integer counter = 0;
+		Double pastval = 0.0;
+		Integer year = 2016;
+
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		for(Integer iter = 0; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				String stack = entries[0]+","+entries[3];
+				String[] keys = stack.split(",");
+				if (keys[1].contains("primary")){
+					if (pastval.equals(0.0)){
+						pastval = Double.parseDouble(value);
+						globalsum += Double.parseDouble(value);
+						counter += 1;
+					}
+					else{
+						String lastyear = String.valueOf(year+1-iter);
+						String curyear = String.valueOf(year-iter);
+						globalsum += Double.parseDouble(value);
+						counter += 1;
+						avg = (pastval+Double.parseDouble(value))/2;
+						avgprim.put(new String(lastyear+"-"+curyear), avg);
+						pastval = 0.0;
+					}
+
+
+				}
+				else if(keys[1].contains("tertiary")){
+					if (pastval.equals(0.0)){
+						pastval = Double.parseDouble(value);
+						globalsum += Double.parseDouble(value);
+						counter += 1;
+					}
+					else{
+						String lastyear = String.valueOf(year+1-iter);
+						String curyear = String.valueOf(year-iter);
+						globalsum += Double.parseDouble(value);
+						counter += 1;
+						avg = (pastval+Double.parseDouble(value))/2;
+						avgtert.put(new String(lastyear+"-"+curyear), avg);
+						pastval = 0.0;
+					}
+				}
+
+				break;
+			}
+			else{
+				continue;
+			}
+		}
+		globalavg = globalsum/counter;
+
+	}
+	@Override
+	protected void cleanup(Context context) throws IOException,
+    InterruptedException {
+		for (String avgyears : avgprim.keySet()){
+			context.write(new Text(avgyears), new DoubleWritable(avgprim.get(avgyears));
+		}
+	}
+}

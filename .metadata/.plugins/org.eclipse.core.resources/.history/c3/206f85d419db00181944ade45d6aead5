@@ -1,0 +1,23 @@
+package com.revature.usfemeducation;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class femeduMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
+	@Override
+	public void map(LongWritable key, Text value, Context context)
+			throws IOException, InterruptedException{
+		Integer linenum = 0;
+		String line = value.toString();
+		String[] lines = line.split(",");
+			if(lines[2].contains("Employment to")){
+				if(lines[4].contains("female")){
+					context.write(new Text(line), new IntWritable(linenum++));
+			}
+		}
+	}
+}

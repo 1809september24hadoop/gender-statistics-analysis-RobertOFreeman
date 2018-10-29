@@ -1,0 +1,36 @@
+package com.revature.femalegrad;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemGradReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+		String value = "";
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		for(Integer iter = 4; iter < entries.length-1; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null ){
+				value = entries[entries.length-iter];
+				String stack = entries[0]+","+entries[3];
+				String[] keys = stack.split(",");
+				if (keys[1].contains("primary")){
+					context.write(new Text(keys[0]+",HighSchool,"), new DoubleWritable(Double.parseDouble(value)));
+				}
+				else if(keys[1].contains("tertiary")){
+					context.write(new Text(keys[0]+",College,"), new DoubleWritable(Double.parseDouble(value)));
+				}
+				break;
+			}
+			else{
+				continue;
+			}
+		}
+		
+	}
+}

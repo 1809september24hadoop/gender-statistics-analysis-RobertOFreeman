@@ -1,0 +1,34 @@
+package com.revature.bountyhunt;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Reducer.Context;
+
+public class BountyHuntReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+	Double femaleval = 0.0;
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		for(Integer iter = 1; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				if(entries[3].contains("female")){
+					femaleval = Double.parseDouble(value);
+				}
+			}
+			else{
+				continue;
+			}
+		}
+		
+	}
+}

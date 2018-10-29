@@ -1,0 +1,44 @@
+package com.revature.usfemeducation;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemEduReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+		Double avg = 0.0;
+		Double pastval = 0.0;
+		Double[] avgprim = new Double[100];
+		
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		for(Integer iter = 4; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				String stack = entries[0]+","+entries[3];
+				String[] keys = stack.split(",");
+				if (keys[1].contains("primary")){
+				
+				}
+				else if(keys[1].contains("tertiary")){
+				}
+				
+				break;
+			}
+			else{
+				continue;
+			}
+		}
+		
+	}
+}

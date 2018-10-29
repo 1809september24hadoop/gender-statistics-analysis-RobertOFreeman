@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Testinator" project="Statistics" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.testificate.Testinator" time="0.853">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinator" time="0.739"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinator" time="0.071"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinator" time="0.043"/>
+  </testsuite>
+</testrun>

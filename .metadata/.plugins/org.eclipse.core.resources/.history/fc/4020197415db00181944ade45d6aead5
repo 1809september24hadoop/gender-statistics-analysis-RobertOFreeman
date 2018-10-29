@@ -1,0 +1,69 @@
+package com.revature.usfemeducation;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class FemEduReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+
+	Map<String,Double> avgtert = new HashMap<String,Double>();
+	Integer year = 2017;
+	Double lastval = 0.0;
+	Double difference = 0.0;
+	Double pastval = 0.0;
+	Integer pastyear = 0;
+	Integer firstyear = 0;
+
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		String stack = entries[0]+","+entries[3];
+		String[] keys = stack.split(",");
+		for(Integer iter = 1; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				if (lastval == 0.0){
+					lastval = Double.parseDouble(value);
+				}
+				if (firstyear == 0){
+					firstyear = year-iter;
+				}
+				if(keys[1].contains("tertiary")){
+					if (pastval.equals(0.0)){
+						pastval = Double.parseDouble(value);
+						pastyear = year-iter;
+					}
+					else{
+						String curyear = String.valueOf(year-iter);
+						difference = (pastval-Double.parseDouble(value));
+						avgtert.put(new String(curyear+"-"+pastyear), difference);
+						pastval = Double.parseDouble(value);
+						pastyear = Integer.valueOf(curyear);
+					}
+				}
+			}
+			else{
+				continue;
+			}
+		}
+	}
+	@Override
+	protected void cleanup(Context context) throws IOException,
+	InterruptedException {
+		context.write(new Text("Global Increase,"), new DoubleWritable(lastval-pastval/firstyear-pastyear));
+		for (String avgyears : avgtert.keySet()){
+			context.write(new Text(avgyears+",college,"), new DoubleWritable(avgtert.get(avgyears)));
+		}
+	}
+}

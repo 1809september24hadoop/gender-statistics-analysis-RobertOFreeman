@@ -1,0 +1,71 @@
+package com.revature.percentfememp;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Reducer.Context;
+
+public class PercentFemEmpReducer extends Reducer <Text, IntWritable, Text, DoubleWritable> {
+
+	Integer year = 2017;
+	Integer stopyear = 2000;
+	Double firstval = 0.0;
+	Double difference = 0.0;
+	Double pastval = 0.0;
+	Integer pastyear = 0;
+	Integer firstyear = 0;
+
+	public void reduce(Text values, Iterable<IntWritable> key, Context context)
+			throws IOException, InterruptedException {
+
+		String entry = values.toString();
+		String[] entries = entry.split(",");
+		String stack = entries[0]+","+entries[3];
+		String[] keys = stack.split(",");
+		if (keys[0] = "World"){
+			
+		}
+		else{
+		for(Integer iter = 1; iter < entries.length-5; iter++){
+			if (entries[entries.length-iter] != "," ||entries[entries.length-iter] != null|entries[entries.length-iter] != ""){
+				String value = entries[entries.length-iter];
+				value = value.substring(1,value.length()-1);
+				if (value.isEmpty()){
+					continue;
+				}
+				if(year-iter < stopyear){
+					context.write(key, value);
+				}
+				if (firstval == 0.0){
+					firstval = Double.parseDouble(value);
+				}
+				if (firstyear == 0){
+					firstyear = year-iter;
+				}
+				if(keys[1].contains("tertiary")){
+					if (pastval.equals(0.0)){
+						pastval = Double.parseDouble(value);
+						pastyear = year-iter;
+					}
+					else{
+						String curyear = String.valueOf(year-iter);
+						difference = (pastval-Double.parseDouble(value));
+						avgtert.put(new String(curyear+"-"+pastyear), difference);
+						pastval = Double.parseDouble(value);
+						pastyear = Integer.valueOf(curyear);
+					}
+				}
+			}
+			else{
+				continue;
+			}
+		}
+		}
+}
+
+}

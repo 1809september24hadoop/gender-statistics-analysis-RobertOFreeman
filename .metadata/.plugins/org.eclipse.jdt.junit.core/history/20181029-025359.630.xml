@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="com.revature.testificate" project="Statistics" tests="15" started="15" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.testificate.Testinator" time="0.866">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinator" time="0.749"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinator" time="0.076"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinator" time="0.041"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatore" time="0.088">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatore" time="0.027"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatore" time="0.023"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatore" time="0.038"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorc" time="0.071">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorc" time="0.025"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorc" time="0.022"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorc" time="0.024"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatord" time="0.064">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatord" time="0.021"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatord" time="0.021"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatord" time="0.022"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorb" time="0.067">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorb" time="0.025"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorb" time="0.019"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorb" time="0.023"/>
+  </testsuite>
+</testrun>

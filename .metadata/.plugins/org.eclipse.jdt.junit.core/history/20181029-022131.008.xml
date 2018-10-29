@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="com.revature.testificate" project="Statistics" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.testificate.Testinator" time="0.831">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinator" time="0.721"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinator" time="0.07"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinator" time="0.04"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorc" time="0.076">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorc" time="0.027"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorc" time="0.024"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorc" time="0.025"/>
+  </testsuite>
+  <testsuite name="com.revature.testificate.Testinatorb" time="0.074">
+    <testcase name="testReducer" classname="com.revature.testificate.Testinatorb" time="0.026"/>
+    <testcase name="testMapper" classname="com.revature.testificate.Testinatorb" time="0.023"/>
+    <testcase name="testMapReduce" classname="com.revature.testificate.Testinatorb" time="0.025"/>
+  </testsuite>
+</testrun>
